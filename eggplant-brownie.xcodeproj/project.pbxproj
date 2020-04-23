@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		192C5D082451224500C44510 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 192C5D072451224500C44510 /* Default-568h@2x.png */; };
 		1936460B244D06A3005A6B17 /* RefeicoesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1936460A244D06A3005A6B17 /* RefeicoesTableViewController.swift */; };
 		B90829C72221AF9600EA37C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90829C62221AF9600EA37C8 /* AppDelegate.swift */; };
 		B90829C92221AF9600EA37C8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90829C82221AF9600EA37C8 /* ViewController.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		192C5D072451224500C44510 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		1936460A244D06A3005A6B17 /* RefeicoesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefeicoesTableViewController.swift; sourceTree = "<group>"; };
 		B90829C32221AF9600EA37C8 /* eggplant-brownie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "eggplant-brownie.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B90829C62221AF9600EA37C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -45,6 +47,7 @@
 		B90829BA2221AF9600EA37C8 = {
 			isa = PBXGroup;
 			children = (
+				192C5D072451224500C44510 /* Default-568h@2x.png */,
 				B90829C52221AF9600EA37C8 /* eggplant-brownie */,
 				B90829C42221AF9600EA37C8 /* Products */,
 			);
@@ -158,6 +161,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B90829D12221AF9700EA37C8 /* LaunchScreen.storyboard in Resources */,
+				192C5D082451224500C44510 /* Default-568h@2x.png in Resources */,
 				B90829CE2221AF9700EA37C8 /* Assets.xcassets in Resources */,
 				B90829CC2221AF9600EA37C8 /* Main.storyboard in Resources */,
 			);
