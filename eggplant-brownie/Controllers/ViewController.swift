@@ -12,7 +12,12 @@ protocol AdicionaRefeicaoDelegate {
     func addRefeicao(_ refeicao: Refeicao)
 }
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate,  adicionarItensDelegate {
+    
+    
+    
+   
+    
    
     
     
@@ -34,11 +39,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     //MARK: - IBOutlet
     @IBOutlet var nomeTextField: UITextField?
     @IBOutlet weak var felicidadeTextField: UITextField?
+    @IBOutlet weak var itensTableView: UITableView!
     
     
     //MARK: - Life View Cicle
     
+    override func viewDidLoad() {
+        let botaoAdicionarItens = UIBarButtonItem(title: "adicionaritens", style: .plain, target: self, action : #selector(AdicionarItens))
+        navigationItem.rightBarButtonItem = botaoAdicionarItens
+    }
     
+    @objc func AdicionarItens(){
+        let adicionarViewsControlle = AdicionarItensViewController(delegate : self);
+        navigationController?.pushViewController(adicionarViewsControlle, animated: true)
+    }
 
     
     //MARK: - UITableViewController
@@ -97,5 +111,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         delegate?.addRefeicao(refeicao)
         navigationController?.popViewController(animated: true)
     }
+    
+    
+       func add(_ item: Item) {
+        itens.append(item)
+        itensTableView.reloadData()
+       }
 }
 
