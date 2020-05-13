@@ -15,9 +15,6 @@
     class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate,  adicionarItensDelegate {
         
         
-        
-       
-        
        
         
         
@@ -25,10 +22,7 @@
         
         var delegate : RefeicoesTableViewController?
         
-        var itens : [Item] = [Item(nome: "Molho Shoyo", calorias: 40),
-                              Item(nome: "Molho Barbecue", calorias: 20),
-                              Item(nome: "Molho Acebolado", calorias: 10),
-                              Item(nome: "Molho Ingles", calorias: 100)]
+        var itens : [Item] = []
         
         
         var itensSelecionados : [Item] = []
@@ -45,6 +39,9 @@
         //MARK: - Life View Cicle
         
         override func viewDidLoad() {
+            
+            itens = ItemDAO().recuperaItens()
+            
             let botaoAdicionarItens = UIBarButtonItem(title: "adicionaritens", style: .plain, target: self, action : #selector(AdicionarItens))
             navigationItem.rightBarButtonItem = botaoAdicionarItens
         }
@@ -53,6 +50,7 @@
             let adicionarViewsControlle = AdicionarItensViewController(delegate : self);
             navigationController?.pushViewController(adicionarViewsControlle, animated: true)
         }
+        
 
         
         //MARK: - UITableViewController
@@ -126,11 +124,13 @@
         
            func add(_ item: Item) {
             itens.append(item)
+            ItemDAO().save(itens)
             if let itensTableView = itensTableView{
                 itensTableView.reloadData()
             }else{
                 Alerta(controller: self).exibe()
             }
+            
         }
         
     }

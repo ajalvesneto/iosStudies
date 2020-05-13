@@ -10,15 +10,18 @@ import UIKit
 
 class RefeicoesTableViewController: UITableViewController, AdicionaRefeicaoDelegate{
     
-     var refeicoes = [Refeicao(nome: "Lasanha", felicidade: 4),
-                    Refeicao(nome: "Pizza", felicidade: 5),
-                    Refeicao(nome: "Japones", felicidade: 5),
-                    Refeicao(nome: "Feijoada", felicidade: 3)];
+    var refeicoes : [Refeicao] = []
+    
     
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return refeicoes.count;
     }
+    
+    override func viewDidLoad() {
+        refeicoes = RefeicaoDAO().recuperaRefeicoes()
+    }
+    
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -42,23 +45,26 @@ class RefeicoesTableViewController: UITableViewController, AdicionaRefeicaoDeleg
             else {
                 return
             }
-            
             let refeicao = refeicoes[indexPath.row]
-            let alertController = UIAlertController(title: refeicao.nome, message: refeicao.toString(), preferredStyle: .alert)
             
-            let botaoCancelar = UIAlertAction(title: "Fechar", style: .cancel, handler: nil)
             
-            alertController.addAction(botaoCancelar)
-            
-            present(alertController, animated: true, completion: nil)
-            
+            RemoveRefeicaoViewController.init(self).exibe(refeicao, handler: { alert  in
+                self.refeicoes.remove(at: indexPath.row)
+                self.tableView.reloadData()
+            })
             
         }
+        
+    }
+    
+    func removeRefeicao(alerta : UIAlertAction){
+        print("entrou")
     }
     
     func addRefeicao(_ refeicao: Refeicao){
         refeicoes.append(refeicao);
         tableView.reloadData();
+        RefeicaoDAO().save(refeicoes)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
