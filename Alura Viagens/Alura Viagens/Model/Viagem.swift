@@ -10,7 +10,7 @@ import UIKit
 
 class Viagem: NSObject {
     
-    let titulo : String;
+    @objc let titulo : String;
     let quantidadeDias : Int;
     let valor : String;
     let caminhoImagem : String;
