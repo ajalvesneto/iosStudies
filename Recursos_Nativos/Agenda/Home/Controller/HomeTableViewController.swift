@@ -73,6 +73,10 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate, NSFet
                     UIApplication.shared.open(url, options: [:], completionHandler: nil)
                     }
                     break
+                case .mapa:
+                    let mapa = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "mapa") as! MapaViewController
+                    mapa.aluno = alunoSelecionado
+                    self.navigationController?.pushViewController(mapa, animated: true)
                 }
             }
             self.present(menu, animated: true, completion: nil)
@@ -140,4 +144,6 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate, NSFet
         }
     }
 
+    @IBAction func buttonCalculaMedia(_ sender: UIBarButtonItem) {
+    }
 }

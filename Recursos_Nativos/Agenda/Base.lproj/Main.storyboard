@@ -50,7 +50,11 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Agenda" id="aoB-Jw-lAm">
                         <barButtonItem key="backBarButtonItem" title=" " id="M57-Hv-I3X"/>
-                        <barButtonItem key="leftBarButtonItem" systemItem="bookmarks" id="dzi-1s-s3a"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="bookmarks" id="dzi-1s-s3a">
+                            <connections>
+                                <action selector="buttonCalculaMedia:" destination="Qhi-kM-lyB" id="1Xm-cI-mly"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="4cp-jd-Mnv">
                             <connections>
                                 <segue destination="ZY7-NM-Hup" kind="show" id="tio-sZ-JlU"/>
@@ -244,6 +248,35 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eia-sQ-Gcl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1189.5999999999999" y="115.59220389805098"/>
+        </scene>
+        <!--Mapa View Controller-->
+        <scene sceneID="IEm-A2-mdo">
+            <objects>
+                <viewController storyboardIdentifier="mapa" id="6bM-KJ-lRC" customClass="MapaViewController" customModule="Agenda" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DQl-C5-IvV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="faa-Hc-AnG">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="faa-Hc-AnG" firstAttribute="top" secondItem="Jf2-iY-Mi9" secondAttribute="top" id="64N-u3-zPJ"/>
+                            <constraint firstItem="faa-Hc-AnG" firstAttribute="leading" secondItem="Jf2-iY-Mi9" secondAttribute="leading" id="NXV-Mc-PdC"/>
+                            <constraint firstItem="faa-Hc-AnG" firstAttribute="bottom" secondItem="Jf2-iY-Mi9" secondAttribute="bottom" id="QL4-yJ-Fje"/>
+                            <constraint firstItem="faa-Hc-AnG" firstAttribute="trailing" secondItem="Jf2-iY-Mi9" secondAttribute="trailing" id="U0P-oH-5hT"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Jf2-iY-Mi9"/>
+                    </view>
+                    <connections>
+                        <outlet property="mapa" destination="faa-Hc-AnG" id="dGD-wo-m5w"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eLU-p9-EwG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1895.2" y="109.29535232383809"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="yXs-rW-FGy">
