@@ -15,6 +15,16 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var imageAluno: UIImageView!
     @IBOutlet weak var labelNomeDoAluno: UILabel!
 
+    func configuraCelula(_ aluno : Aluno){
+        labelNomeDoAluno.text = aluno.nome
+        imageAluno.layer.cornerRadius = imageAluno.frame.width / 2
+        imageAluno.layer.masksToBounds = true
+        if  let imagemAluno = aluno.foto as? UIImage {
+            imageAluno.image = imagemAluno
+        }
+        
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

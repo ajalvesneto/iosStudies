@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class AlunoViewController: UIViewController, ImagePickerFotoSelecionada {
   
@@ -27,7 +28,14 @@ class AlunoViewController: UIViewController, ImagePickerFotoSelecionada {
     
     //MARK: - Atributos
        
-       let imagePicker = ImagePicker()
+    let imagePicker = ImagePicker()
+    
+    var contexto : NSManagedObjectContext{
+        let appDelegate =  UIApplication.shared.delegate as! AppDelegate
+        return appDelegate.persistentContainer.viewContext
+    }
+    
+    var aluno : Aluno?
     
     // MARK: - View Lifecycle
 
@@ -49,11 +57,23 @@ class AlunoViewController: UIViewController, ImagePickerFotoSelecionada {
     
     func setup(){
         imagePicker.delegate = self
+        guard let alunoSelecionado = aluno else {return}
+        recuperaDados(alunoSelecionado)
+        
     }
     
    
     
     // MARK: - Métodos
+    
+    func recuperaDados(_ aluno : Aluno){
+        textFieldNome.text = aluno.nome
+        imageAluno.image = aluno.foto as? UIImage
+        textFieldEndereco.text = aluno.endereco
+        textFieldTelefone.text = aluno.telefone
+        textFieldSite.text = aluno.site
+        textFieldNota.text = "\(aluno.nota)"
+    }
     
     func arredondaView() {
         self.viewImagemAluno.layer.cornerRadius = self.viewImagemAluno.frame.width / 2
@@ -68,13 +88,15 @@ class AlunoViewController: UIViewController, ImagePickerFotoSelecionada {
     func mostrarMultimidia(_ opcao : MenuOpcoes){
          let multimidia = UIImagePickerController();
          multimidia.delegate = imagePicker
-        if multimidia.sourceType == .camera && UIImagePickerController.isSourceTypeAvailable(.camera){
+        if opcao == .camera && UIImagePickerController.isSourceTypeAvailable(.camera){
             multimidia.sourceType = .camera
         }else{
             multimidia.sourceType = .photoLibrary
         }
         self.present(multimidia, animated: true, completion: nil)
     }
+    
+   
     
     // MARK: - IBActions
     
@@ -92,5 +114,24 @@ class AlunoViewController: UIViewController, ImagePickerFotoSelecionada {
         self.textFieldNota.text = "\(sender.value)"
     }
     
+    @IBAction func buttoSalvar(_ sender: UIButton) {
+        if aluno == nil {
+            aluno = Aluno(context: contexto)
+            
+        }
+        aluno?.nome = textFieldNome.text
+        aluno?.endereco = textFieldEndereco.text
+        aluno?.telefone = textFieldTelefone.text
+        aluno?.site = textFieldSite.text
+        aluno?.nota = (textFieldNota.text! as NSString).doubleValue
+        aluno?.foto = imageAluno.image
+        do{
+            try
+            contexto.save()
+            navigationController?.popViewController(animated: true)
+          }catch{
+            print(error.localizedDescription)
+          }
+    }
     
 }
